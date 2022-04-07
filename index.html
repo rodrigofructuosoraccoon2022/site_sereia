@@ -2575,6 +2575,33 @@
     
   </script>
 
+  </script>
+
+<!--verificar quantos interagiram com menu--> 
+<script>
+
+let quantidadeMenu = 0;
+let clicado = true;
+
+  document.querySelector('button.navbar-toggle').addEventListener(
+  'click', evt => {
+    
+    if (clicado) {
+
+      quantidadeMenu += 1;
+      tracker.send('event', 
+        {'action': 'click', 
+        'label': 'interagindo com menu',
+        'category': 'menu',
+        'value': quantidadeMenu,
+      'cd1': 'preencher uma mensagem'});
+      clicado = false;
+
+    } 
+  })
+
+</script>
+  
 </body>
 
 </html>
