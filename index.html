@@ -2683,6 +2683,35 @@ let quantidadePrencher = 0;
   }
 
 </script>
+
+<!--Quantos pessoas permaneceram na página por mais de 1 minuto-->
+<script>
+
+  let quantidadeLogado = 0;
+
+  window.addEventListener(
+    'load', evt => {
+      window.setTimeout(
+        enviar()
+        , 600001
+      )
+    
+    }
+  )
+
+  function enviar() {
+    quantidadeLogado++;
+    tracker.send('event', 
+          {'action': 'timeout', 
+          'label': 'Window',
+          'category': 'Tempo na Tela',
+          'value': quantidadeLogado,
+          'cd1': 'mais de 1 minuto navegando'
+          }
+    )
+  }
+
+</script>
   
 </body>
 
