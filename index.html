@@ -2713,6 +2713,32 @@ let quantidadePrencher = 0;
 
 </script>
   
+<!-- verificar quantas pessoas rolaram a página até o fim-->
+<script>
+  let quantidadeRolagemFim = 0;
+
+  document.addEventListener(
+    'scroll', evt => {
+
+      const scrollIni = (document.documentElement.scrollHeight - window.innerHeight) * 0.999;
+      const y = window.pageYOffset; 
+      console.log(scrollIni);
+      console.log(y);
+        if (Math.ceil(y) > Math.ceil(scrollIni)) {
+          quantidadeRolagemFim++;
+          window.tracker.send(
+            'event',
+            {'action': 'scroll',
+            'label': 'rolou página até final da tela',
+            'category': 'rolar página'
+            }
+          ) 
+        }
+    }  
+  )
+
+</script>
+  
 </body>
 
 </html>
