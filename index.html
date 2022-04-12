@@ -2972,7 +2972,32 @@ let quantidadePrencher = 0;
       }
     )
      
-  </script>
+</script>
+  
+  <!--verificar quantos vizualizaram form de contato-->
+<script>
+
+  let quantidadeForm = 0;
+  
+  document.addEventListener(
+    'scroll', evt => {
+      let posicaoY = window.pageYOffset;
+      if (posicaoY === 5487){
+        quantidadeForm++;
+        tracker.send('event',
+          {
+            'action': 'scroll', 
+            'label': 'Formulário de Contato',
+            'category': 'visualizar-form-contato',
+            'value': quantidadeForm,
+            'cd1': 'direcionar para o formulario de contato'
+          }
+        )
+      }
+    }
+  )
+  
+</script>
   
 </body>
 
