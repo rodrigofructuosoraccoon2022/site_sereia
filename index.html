@@ -2999,6 +2999,25 @@ let quantidadePrencher = 0;
   
 </script>
   
+<!--teste-->
+<script>  
+
+  document.querySelector('form#contactForm').addEventListener(
+    'submit', evt => {
+      tracker.send(
+      'event',
+        {
+          'action': 'submit',
+          'label': '',
+          'category': ''
+        }
+      );
+      evt.preventDefault();
+    }
+  )
+    
+</script>  
+
 </body>
 
 </html>
