@@ -3037,6 +3037,34 @@ let quantidadePrencher = 0;
     )
 
 </script>
+
+<!--verificar se pop-up apareceu na tela-->
+<script>
+
+    // seleciona o nó alvo
+    let target = document.querySelector('#call-me-baby');
+
+    // cria uma nova instância de observador
+    let observer = new MutationObserver(
+      evt => {
+        window.tracker.send('event',
+          {
+            'action': 'popup',
+            'label': 'submit-form',
+            'category': 'phone-popup', 
+          }
+        )
+      }
+    );
+
+    // configuração do observador:
+    let config = { attributes: true };
+
+    // passar o nó alvo, bem como as opções de observação
+    observer.observe(target, config);
+
+
+</script>  
   
 </body>
 
