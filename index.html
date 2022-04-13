@@ -2999,25 +2999,45 @@ let quantidadePrencher = 0;
   
 </script>
   
-<!--teste-->
-<script>  
+<!--verificar quantas pessoas enviaram o formulário de contato e se foi com sucesso ou falha-->
+  <script>  
 
-  document.querySelector('form#contactForm').addEventListener(
-    'submit', evt => {
-      tracker.send(
-      'event',
-        {
-          'action': 'submit',
-          'label': '',
-          'category': ''
+    const name = document.getElementById('name');
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+    const message = document.getElementById('message');
+
+    document.querySelector('form#contactForm').addEventListener(
+      'submit', evt => {
+
+        if (name.value === '' && email.value === '' && phone.value === '' && message.value === '') {
+          window.tracker.send(
+            'event',
+            {
+              'action': 'submit',
+              'label': 'submit-form',
+              'category': 'envio-form',
+              'value': 'submit-fail'
+            }
+          );
         }
-      );
-      evt.preventDefault();
-    }
-  )
-    
-</script>  
+      
+        if (name.value !== '' && email.value !== '' && phone.value !== "" && message.value !== '') {
+          window.tracker.send(
+            'event',
+            {
+              'action': 'submit',
+              'label': 'submit-form',
+              'category': 'envio-form',
+              'value': 'submit-sucess'
+            }
+          );
+        }
+      }
+    )
 
+</script>
+  
 </body>
 
 </html>
