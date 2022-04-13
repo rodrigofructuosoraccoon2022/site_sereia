@@ -2583,7 +2583,7 @@
 let quantidadeMenu = 0;
 let clicado = true;
 
-  document.querySelector('button.navbar-toggle').addEventListener(
+document.querySelector('nav#mainNav.navbar.navbar-default.navbar-custom.navbar-fixed-top.affix div.container').addEventListener(
   'click', evt => {
     
     if (clicado) {
@@ -2594,7 +2594,7 @@ let clicado = true;
         'label': 'interagindo com menu',
         'category': 'menu',
         'value': quantidadeMenu,
-      'cd1': 'preencher uma mensagem'});
+        'cd1': 'preencher uma mensagem'});
       clicado = false;
 
     } 
