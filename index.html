@@ -3001,7 +3001,6 @@ document.querySelector('nav#mainNav.navbar.navbar-default.navbar-custom.navbar-f
     'scroll', evt => {
       const scrollIni = (document.documentElement.scrollHeight - window.innerHeight) * 0.999;
       const y = window.pageYOffset;
-      console.log(scrollIni, y);
       if (disparoFormContact === true){
         if (Math.ceil(y) > Math.ceil(scrollIni * 0.90 )) {
           quantidadeForm++;
