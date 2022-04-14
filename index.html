@@ -2577,168 +2577,36 @@
 
   </script>
 
-<!--verificar quantos interagiram com menu--> 
-<script>
-
-let quantidadeMenu = 0;
-let clicado = true;
-
-document.querySelector('nav#mainNav.navbar.navbar-default.navbar-custom.navbar-fixed-top.affix div.container').addEventListener(
-  'click', evt => {
-    
-    if (clicado) {
-
-      quantidadeMenu += 1;
-      tracker.send('event', 
-        {'action': 'click', 
-        'label': 'interagindo com menu',
-        'category': 'menu',
-        'value': quantidadeMenu,
-        'cd1': 'preencher uma mensagem'});
-      clicado = false;
-
-    } 
-  })
-
-</script>
-  
-<!--Quantos preencheram o form e por qual input começaram-->
-<script>
-let inputName = document.querySelector('input.form-control#name');
-let inputEmail = document.querySelector('input.form-control#email');
-let inputPhone = document.querySelector('input.form-control#phone');
-let inputMessage = document.querySelector('textarea.form-control#message');
-let firstClicado = true;
-let quantidadePrencher = 0;
-
-  if (inputName) {
-    inputName.addEventListener(
-      'click', evt => {
-       if (inputName && firstClicado) {
-
-          quantidadePrencher++;
-          tracker.send('event', 
-            {'action': 'click', 
-            'label': 'nome',
-            'category': 'preencher-form',
-            'value': quantidadePrencher,
-            'cd1': 'preencher seu nome'});
-          firstClicado = false;
-      }
-     
-    });
-  } 
-  if (inputEmail){
-    inputEmail.addEventListener(
-      'click', evt => {
-      if (inputEmail && firstClicado) {
-
-        quantidadePrencher++;
-        tracker.send('event', 
-          {'action': 'click', 
-          'label': 'email',
-          'category': 'preencher-form',
-          'value': quantidadePrencher,
-          'cd1': 'preencher seu email'});
-        firstClicado = false;
-      }
-
-    })
-  }
-
-  if (inputPhone){
-    inputPhone.addEventListener(
-      'click', evt => {
-      if (inputPhone && firstClicado) {
-
-        quantidadePrencher++;
-        tracker.send('event', 
-          {'action': 'click', 
-          'label': 'phone',
-          'category': 'preencher-form',
-          'value': quantidadePrencher,
-          'cd1': 'preencher seu telefone'});
-          firstClicado = false;
-      }
-
-    })
-  }
-  
-  if (inputMessage){
-    inputMessage.addEventListener(
-      'click', evt => {
-      if (inputMessage && firstClicado) {
-
-        quantidadePrencher++;
-        tracker.send('event', 
-          {'action': 'click', 
-          'label': 'messagem',
-          'category': 'preencher-form',
-          'value': quantidadePrencher,
-          'cd1': 'preencher sua mensagem'});
-          firstClicado = false;
-      }
-
-    })
-  }
-
-</script>
-
-<!--Quantos pessoas permaneceram na página por mais de 1 minuto-->
-<script>
-
-  let quantidadeLogado = 0;
-
-  window.addEventListener(
-    'load', evt => {
-      window.setTimeout(
-        enviar()
-        , 600001
-      )
-    
-    }
-  )
-
-  function enviar() {
-    quantidadeLogado++;
-    tracker.send('event', 
-          {'action': 'timeout', 
-          'label': 'Window',
-          'category': 'Tempo na Tela',
-          'value': quantidadeLogado,
-          'cd1': 'mais de 1 minuto navegando'
-          }
-    )
-  }
-
-</script>
-  
 <!-- verificar quantas pessoas rolaram a página até o fim-->
 <script>
   let quantidadeRolagemFim = 0;
+  let disparo = true;
 
   document.addEventListener(
     'scroll', evt => {
 
       const scrollIni = (document.documentElement.scrollHeight - window.innerHeight) * 0.999;
       const y = window.pageYOffset; 
-      console.log(scrollIni);
-      console.log(y);
+      if (disparo === true) { 
         if (Math.ceil(y) > Math.ceil(scrollIni)) {
           quantidadeRolagemFim++;
           window.tracker.send(
             'event',
-            {'action': 'scroll',
-            'label': 'rolou página até final da tela',
-            'category': 'rolar página'
+            {
+              'action': 'scroll',
+              'label': 'rolou página até final da tela',
+              'category': 'rolar página',
+              'value': quantidadeRolagemFim
             }
-          ) 
+          );
+          disparo = false;
         }
+      }
     }  
   )
 
 </script>
-  
+
 <!--verificar midias sociais, se são dos dev ou site, quais midias foram, e quantidades de pessoas que clicaram-->
 <script>  
   let quantidadeMidiasSociais = 0;
@@ -2972,8 +2840,8 @@ let quantidadePrencher = 0;
       }
     )
      
-</script>
-  
+  </script>
+
 <!--verificar quantos visualizaram form de contato-->
 <script>
 
@@ -3006,8 +2874,8 @@ let quantidadePrencher = 0;
   )
   
   </script>
-  
-<!--verificar quantas pessoas enviaram o formulário de contato e se foi com sucesso ou falha-->
+
+  <!--verificar quantas pessoas enviaram o formulário de contato e se foi com sucesso ou falha-->
   <script>  
 
     const name = document.getElementById('name');
@@ -3046,8 +2914,8 @@ let quantidadePrencher = 0;
 
 </script>
 
-<!--verificar se pop-up apareceu na tela-->
-<script>
+  <!--verificar se pop-up apareceu na tela-->
+  <script>
 
     // seleciona o nó alvo
     let target = document.querySelector('#call-me-baby');
@@ -3070,8 +2938,7 @@ let quantidadePrencher = 0;
     // passar o nó alvo, bem como as opções de observação
     observer.observe(target, config);
 
-
-</script>  
+</script> 
   
 </body>
 
