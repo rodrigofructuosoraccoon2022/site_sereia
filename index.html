@@ -2687,16 +2687,19 @@ document.querySelector('nav#mainNav.navbar.navbar-default.navbar-custom.navbar-f
     if (clicado) {
 
       quantidadeMenu += 1;
-      tracker.send('event', 
-        {'action': 'click', 
-        'label': 'interagindo com menu',
-        'category': 'menu',
-        'value': quantidadeMenu,
-        'cd1': 'preencher uma mensagem'});
+      tracker.send(
+        'event', 
+        {
+          'action': 'click', 
+          'label': 'interagindo com menu',
+          'category': 'menu',
+          'value': quantidadeMenu,
+        }
+      );
       clicado = false;
-
     } 
-  })
+  }
+)
 
 </script>
 
