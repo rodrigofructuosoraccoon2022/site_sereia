@@ -2978,26 +2978,34 @@ let quantidadePrencher = 0;
 <script>
 
   let quantidadeForm = 0;
-  
+  let disparoFormContact = true;
+
   document.addEventListener(
     'scroll', evt => {
-      let posicaoY = window.pageYOffset;
-      if (posicaoY === 5487){
-        quantidadeForm++;
-        tracker.send('event',
-          {
-            'action': 'scroll', 
-            'label': 'Formulário de Contato',
-            'category': 'visualizar-form-contato',
-            'value': quantidadeForm,
-            'cd1': 'direcionar para o formulario de contato'
-          }
-        )
+      const scrollIni = (document.documentElement.scrollHeight - window.innerHeight) * 0.999;
+      const y = window.pageYOffset;
+      console.log(scrollIni, y);
+      if (disparoFormContact === true){
+        if (Math.ceil(y) > Math.ceil(scrollIni * 0.90 )) {
+          quantidadeForm++;
+          tracker.send(
+            'event',
+            {
+              'action': 'scroll', 
+              'label': 'Formulário de Contato',
+              'category': 'visualizar-form-contato',
+              'value': quantidadeForm,
+              'cd1': 'direcionar para o formulario de contato'
+            }
+          );
+          quantidadeForm++;
+          disparoFormContact = false;
+        }
       }
     }
   )
   
-</script>
+  </script>
   
 <!--verificar quantas pessoas enviaram o formulário de contato e se foi com sucesso ou falha-->
   <script>  
@@ -3050,7 +3058,6 @@ let quantidadePrencher = 0;
         window.tracker.send('event',
           {
             'action': 'popup',
-            'label': 'submit-form',
             'category': 'phone-popup', 
           }
         )
